@@ -1,4 +1,7 @@
+import CallToAction from "@/components/CallToAction";
+import Faqs from "@/components/Faqs";
 import Features from "@/components/Features";
+import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Integrations from "@/components/Integration";
 import Introduction from "@/components/Introduction";
@@ -14,6 +17,9 @@ export default function Home() {
       <Introduction />
       <Features />
       <Integrations />
+      <Faqs />
+      <CallToAction />
+      <Footer />
     </>
   );
 }

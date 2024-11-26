@@ -48,7 +48,7 @@ export default function Integrations() {
     <section className="py-24 overflow-hidden">
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 items-center lg:gap-16">
-          <div>
+          <div className="text-center">
             <Tag>Integrations</Tag>
             <h2 className="text-6xl font-medium mt-6">
               Plays well with <span className="text-lime-400">others</span>
