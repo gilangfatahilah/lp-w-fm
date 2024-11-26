@@ -54,6 +54,7 @@ const Hero = () => {
 
   return (
     <section
+      id="home"
       className="py-24 overflow-x-clip"
       style={{
         cursor: `url(${customCursor.src}), auto`,

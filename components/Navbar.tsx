@@ -9,7 +9,7 @@ import { twMerge } from "tailwind-merge";
 import { AnimatePresence, motion } from "framer-motion";
 
 const navLinks = [
-  { label: "Home", href: "#" },
+  { label: "Home", href: "#hero" },
   { label: "Features", href: "#features" },
   { label: "Integrations", href: "#integrations" },
   { label: "FAQs", href: "#faqs" },
@@ -34,8 +34,13 @@ const Navbar = () => {
               <div className="hidden md:flex justify-center items-center">
                 <nav className="flex gap-6 font-medium">
                   {navLinks.map((link) => (
-                    <Link href={link.href} key={link.label}>
-                      {link.label}
+                    <Link
+                      href={link.href}
+                      key={link.label}
+                      className="relative group"
+                    >
+                      <span>{link.label}</span>
+                      <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-lime-400 transition-all duration-300 group-hover:w-full rounded-full" />
                     </Link>
                   ))}
                 </nav>
