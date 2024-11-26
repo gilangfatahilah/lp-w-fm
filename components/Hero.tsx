@@ -8,7 +8,7 @@ import Pointer from "./ui/Pointer";
 const Hero = () => {
   return (
     <section className="py-24 overflow-x-clip">
-      <div className="container relative mx-auto">
+      <div className="container relative">
         <div className="absolute hidden lg:block -left-32 top-16">
           <Image src={designExample1} alt="Design Example 1" />
         </div>
