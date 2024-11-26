@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import customCursor from "@/assets/images/cursor-you.svg";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -27,6 +28,9 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral-950 text-white`}
+        style={{
+          cursor: `url(${customCursor.src}), auto`,
+        }}
       >
         {children}
       </body>
