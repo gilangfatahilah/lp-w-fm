@@ -1,29 +1,106 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect } from "react";
+import { motion, useAnimate } from "framer-motion";
 
 import designExample1 from "@/assets/images/design-example-1.png";
 import designExample2 from "@/assets/images/design-example-2.png";
+import customCursor from "@/assets/images/cursor-you.svg";
 import Button from "./ui/Button";
 import Pointer from "./ui/Pointer";
 
 const Hero = () => {
+  const [leftDesignScope, leftDesignAnimate] = useAnimate();
+  const [leftPointerScope, leftPointerAnimate] = useAnimate();
+  const [rightDesignScope, rightDesignAnimate] = useAnimate();
+  const [rightPointerScope, rightPointerAnimate] = useAnimate();
+
+  useEffect(() => {
+    leftDesignAnimate([
+      [leftDesignScope.current, { opacity: 1 }, { duration: 0.5 }],
+      [leftDesignScope.current, { x: 0, y: 0 }, { duration: 0.5 }],
+    ]);
+
+    leftPointerAnimate([
+      [leftPointerScope.current, { opacity: 1 }, { duration: 0.5 }],
+      [leftPointerScope.current, { x: -100, y: 0 }, { duration: 0.5 }],
+      [
+        leftPointerScope.current,
+        { x: 0, y: [0, 16, 0] },
+        { duration: 0.5, ease: "easeInOut" },
+      ],
+    ]);
+
+    rightDesignAnimate([
+      [rightDesignScope.current, { opacity: 1 }, { duration: 0.5, delay: 1.5 }],
+      [rightDesignScope.current, { x: 0, y: 0 }, { duration: 0.5 }],
+    ]);
+
+    rightPointerAnimate([
+      [
+        rightPointerScope.current,
+        { opacity: 1 },
+        { duration: 0.5, delay: 1.5 },
+      ],
+      [rightPointerScope.current, { x: 175, y: 0 }, { duration: 0.5 }],
+      [
+        rightPointerScope.current,
+        { x: 0, y: [0, 20, 0] },
+        { duration: 0.5, ease: "easeInOut" },
+      ],
+    ]);
+  }, []);
+
   return (
-    <section className="py-24 overflow-x-clip">
+    <section
+      className="py-24 overflow-x-clip"
+      style={{
+        cursor: `url(${customCursor.src}), auto`,
+      }}
+    >
       <div className="container relative">
-        <div className="absolute hidden lg:block -left-32 top-16">
-          <Image src={designExample1} alt="Design Example 1" />
-        </div>
+        <motion.div
+          ref={leftDesignScope}
+          initial={{ opacity: 0, x: -100, y: 100 }}
+          drag
+          className="absolute hidden lg:block -left-32 top-16"
+        >
+          <Image
+            src={designExample1}
+            alt="Design Example 1"
+            draggable="false"
+          />
+        </motion.div>
 
-        <div className="absolute hidden lg:block -right-64 -top-16">
-          <Image src={designExample2} alt="Design Example 2" />
-        </div>
-
-        <div className="absolute hidden lg:block left-56 top-96">
+        <motion.div
+          ref={leftPointerScope}
+          initial={{ opacity: 0, x: -200, y: 100 }}
+          className="absolute hidden lg:block left-56 top-96"
+        >
           <Pointer name="Orion" color="blue" />
-        </div>
+        </motion.div>
 
-        <div className="absolute hidden lg:block right-80 -top-4">
+        <motion.div
+          ref={rightDesignScope}
+          initial={{ opacity: 0, x: 100, y: 100 }}
+          drag
+          className="absolute hidden lg:block -right-64 -top-16"
+        >
+          <Image
+            src={designExample2}
+            alt="Design Example 2"
+            draggable="false"
+          />
+        </motion.div>
+
+        <motion.div
+          ref={rightPointerScope}
+          initial={{ opacity: 0, x: 275, y: 100 }}
+          className="absolute hidden lg:block right-80 -top-4"
+        >
           <Pointer name="Artemis" color="red" />
-        </div>
+        </motion.div>
 
         <div className="flex justify-center">
           <div className="inline-flex py-1 px-3 bg-gradient-to-r from-purple-400  to-pink-400 rounded-full text-neutral-950 font-semibold">
@@ -31,7 +108,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <h1 className="text-6xl md:text-7xl lg:text-8xl font-medium text-center mt-6 ">
+        <h1 className="text-6xl md:text-7xl lg:text-8xl lg:max-w-4xl mx-auto font-medium lg:font-bold text-center mt-6 ">
           Impactful design, created effortlessly
         </h1>
 
